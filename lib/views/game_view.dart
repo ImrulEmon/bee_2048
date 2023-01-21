@@ -1,3 +1,4 @@
+import 'package:bee_2048/widgets/button_widget.dart';
 import 'package:bee_2048/widgets/score_board_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -40,6 +41,7 @@ class _GamePageState extends ConsumerState<GamePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    // Game name
                     const Text(
                       '2048',
                       style: TextStyle(
@@ -51,11 +53,26 @@ class _GamePageState extends ConsumerState<GamePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        ScoreBoardWidget(),
+                        // Score board
+                        const ScoreBoardWidget(),
+                        const SizedBox(height: paddingDft),
                         Row(
                           children: [
-                            //TODO: Add the Undo button
-                            //TODO: Add the New Game button
+                            //Undo button
+                            ButtonWidget(
+                              icon: Icons.undo,
+                              onPressed: () {
+                                // TODO : Undo the round
+                              },
+                            ),
+                            const SizedBox(width: paddingDft),
+                            //New Game button
+                            ButtonWidget(
+                              icon: Icons.refresh,
+                              onPressed: () {
+                                // TODO : Restart the game
+                              },
+                            )
                           ],
                         )
                       ],

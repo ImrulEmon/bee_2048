@@ -1,5 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:ui';
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,7 +13,7 @@ class ScoreBoardWidget extends ConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Todo connect the state notifier with the score widget
+        // TODO : connect the state notifier with the score widget
         ScoreWidget(label: 'Score', score: '0'),
         const SizedBox(
           width: paddingDft / 2,
@@ -24,7 +23,7 @@ class ScoreBoardWidget extends ConsumerWidget {
           label: 'Best Score',
           score: '0',
           padding: const EdgeInsets.symmetric(
-            horizontal: paddingDft,
+            horizontal: paddingDft / 2,
             vertical: paddingDft / 2,
           ),
         )
