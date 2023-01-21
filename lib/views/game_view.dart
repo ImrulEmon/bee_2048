@@ -1,4 +1,5 @@
 import 'package:bee_2048/widgets/button_widget.dart';
+import 'package:bee_2048/widgets/empty_board_widget.dart';
 import 'package:bee_2048/widgets/score_board_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -80,7 +81,9 @@ class _GamePageState extends ConsumerState<GamePage> {
                   ],
                 ),
               ),
-              //TODO: Add the Empty Board Widget
+              const SizedBox(height: paddingDft * 2),
+              //TODO: Add the Empty Board Widget-have to put it in a Stack
+              const EmptyBoardWidget()
             ],
           ),
         ),

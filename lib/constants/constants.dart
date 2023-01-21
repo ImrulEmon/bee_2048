@@ -1,6 +1,10 @@
 import 'dart:ui';
 
 const double paddingDft = 16.0;
+const double tileSpacing = 12.0;
+// Screen size
+const double maxSizeScreen = 460.0;
+const double minSizeScreen = 290.0;
 
 const backgroundColor = Color(0xfffaf8ef);
 const textColor = Color(0xff776e65);
