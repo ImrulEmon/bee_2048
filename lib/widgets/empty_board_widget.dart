@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:bee_2048/constants/constants.dart';
+import 'package:bee_2048/constants/constants_2048.dart';
 import 'package:flutter/material.dart';
 
 class EmptyBoardWidget extends StatelessWidget {

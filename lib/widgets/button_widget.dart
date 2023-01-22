@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../constants/constants.dart';
+import '../constants/constants_2048.dart';
 
 class ButtonWidget extends ConsumerWidget {
   final String? text;
