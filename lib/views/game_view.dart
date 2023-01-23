@@ -65,6 +65,7 @@ class _GamePageState extends ConsumerState<GamePage>
       autofocus: true,
       focusNode: FocusNode(),
       onKey: (RawKeyEvent event) {
+        // ****Read the third chapter if somethig goes woring****
         //Move the tile with the arrows on the keyboard on Desktop
       },
       child: SwipeDetector(
@@ -99,14 +100,14 @@ class _GamePageState extends ConsumerState<GamePage>
                       children: [
                         // Score board
                         const ScoreBoardWidget(),
-                        const SizedBox(height: paddingDft),
+                        const SizedBox(height: paddingDft * 2),
                         Row(
                           children: [
                             //Undo button
                             ButtonWidget(
                               icon: Icons.undo,
                               onPressed: () {
-                                // TODO : Undo the round
+                                ref.read(boardManagerProvider.notifier).undo();
                               },
                             ),
                             const SizedBox(width: paddingDft),
@@ -114,7 +115,9 @@ class _GamePageState extends ConsumerState<GamePage>
                             ButtonWidget(
                               icon: Icons.refresh,
                               onPressed: () {
-                                // TODO : Restart the game
+                                ref
+                                    .read(boardManagerProvider.notifier)
+                                    .newGame();
                               },
                             )
                           ],

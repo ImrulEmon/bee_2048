@@ -20,27 +20,27 @@ class Tile {
   // Calculate the current top position based on the current index
   double getTop(double size) {
     var i = ((index + 1) / 4).ceil();
-    return ((i - 1) * size) + (tileSpacing * i);
+    return ((i - 1) * size) + (tileSpacing12 * i);
   }
 
   // Calculate the current left position  based on the current index
   double getLeft(double size) {
     var i = (index - (((index + 1) / 4).ceil() * 4 - 4));
-    return (i * size) + (tileSpacing * (i + 1));
+    return (i * size) + (tileSpacing12 * (i + 1));
   }
 
   //Calculate the next top position based on the next index
   double? getNextTop(double size) {
     if (nextIndex == null) return null;
     var i = ((nextIndex! + 1) / 4).ceil();
-    return ((i - 1) * size) + (tileSpacing * i);
+    return ((i - 1) * size) + (tileSpacing12 * i);
   }
 
   //Calculate the next top position based on the next index
   double? getNextLeft(double size) {
     if (nextIndex == null) return null;
     var i = (nextIndex! - (((nextIndex! + 1) / 4).ceil() * 4 - 4));
-    return (i * size) + (12.0 * (i + 1));
+    return (i * size) + (tileSpacing12 * (i + 1));
   }
 
   Tile copyWith({

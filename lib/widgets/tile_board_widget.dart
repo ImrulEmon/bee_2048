@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:bee_2048/widgets/animated_tile_widget.dart';
+import 'package:bee_2048/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -25,7 +26,7 @@ class TileBoardWidget extends ConsumerWidget {
 
     //Decide the size of the tile based on the size of the board minus the space between each tile.
     final sizePerTile = (size / 4).floorToDouble();
-    final tileSize = sizePerTile - tileSpacing - (tileSpacing / 4);
+    final tileSize = sizePerTile - tileSpacing12 - (tileSpacing12 / 4);
     final boardSize = sizePerTile * 4;
 
     return SizedBox(
@@ -61,7 +62,31 @@ class TileBoardWidget extends ConsumerWidget {
                 ),
               ),
             );
-          })
+          }),
+
+          // THIS shows after game over win or lose overly
+          if (board.over)
+            Positioned.fill(
+                child: Container(
+              color: overlayColor,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    board.won ? youWin : gameOver,
+                    style: const TextStyle(
+                        color: textColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 64.0),
+                  ),
+                  ButtonWidget(
+                      text: board.won ? newGame : tryAgain,
+                      onPressed: () {
+                        ref.read(boardManagerProvider.notifier).newGame();
+                      })
+                ],
+              ),
+            ))
         ],
       ),
     );

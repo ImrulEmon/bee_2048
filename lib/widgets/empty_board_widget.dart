@@ -36,9 +36,9 @@ class EmptyBoardWidget extends StatelessWidget {
           var xAxis = ((index + 1) / 4).ceil();
           var yAxis = xAxis - 1;
 
-          var top = yAxis * (tileSize) + (xAxis * tileSpacing);
+          var top = yAxis * (tileSize) + (xAxis * tileSpacing12);
           var zAxis = (index - (4 * yAxis));
-          var left = zAxis * (tileSize) + ((zAxis + 1) * tileSpacing);
+          var left = zAxis * (tileSize) + ((zAxis + 1) * tileSpacing12);
 
           // these are the smaller boxes/tile/cards
           return Positioned(

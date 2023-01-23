@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:bee_2048/constants/constants_2048.dart';
 import 'package:bee_2048/models/board_model.dart';
 import 'package:bee_2048/models/tile_model.dart';
 import 'package:bee_2048/providers/next_direction_provider.dart';
@@ -61,13 +62,15 @@ class BoardManagerStateNotifier extends StateNotifier<Board> {
     }
     // Return immutable copy of the current tile with the new index
     // which can either ne the top left index in the row or the last tile nextIndex/index+1
-    return tile.copyWith(nextIndex: nextIndex);
+    return tile.copyWith(
+        nextIndex: vert ? verticalOrder.indexOf(nextIndex) : nextIndex);
   }
 
   // Move the tile in direction
   bool move(SwipeDirection direction) {
     // Sort the list of tiles by index
-    bool asc = direction == SwipeDirection.left;
+    bool asc =
+        direction == SwipeDirection.left || direction == SwipeDirection.up;
     bool vert =
         direction == SwipeDirection.up || direction == SwipeDirection.down;
     // Sort the list of tiles by index
@@ -176,7 +179,7 @@ class BoardManagerStateNotifier extends StateNotifier<Board> {
         var tile = state.tiles[i];
 
         // if there is a tile with 2048 then the game is won.
-        if (tile.value == 2048) {
+        if (tile.value == winningScore) {
           gameWon = true;
         }
         var x = (i - (((i + 1) / 4).ceil() * 4 - 4));
@@ -245,6 +248,17 @@ class BoardManagerStateNotifier extends StateNotifier<Board> {
       return true;
     }
     return false;
+  }
+
+  // undo one round
+  void undo() {
+    if (state.undo != null) {
+      state = state.copyWith(
+        score: state.undo!.score,
+        best: state.undo!.best,
+        tiles: state.undo!.tiles,
+      );
+    }
   }
 }
 

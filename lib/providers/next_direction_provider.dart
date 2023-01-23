@@ -6,8 +6,8 @@ In case user swipes too fast we prevent for the next round to start until the cu
 but instead of canceling that round we will queue it so that the round automatically starts as soon the current finishes,
 that way we will prevent the user feeling like the game is lag-ish or slow.
 */
-class NextDirectionManager extends StateNotifier<SwipeDirection?> {
-  NextDirectionManager() : super(null);
+class NextDirectionManagerStateNotifier extends StateNotifier<SwipeDirection?> {
+  NextDirectionManagerStateNotifier() : super(null);
 
   void queue(direction) {
     state = direction;
@@ -19,6 +19,7 @@ class NextDirectionManager extends StateNotifier<SwipeDirection?> {
 }
 
 final nextDirectionManagerProvider =
-    StateNotifierProvider<NextDirectionManager, SwipeDirection?>((ref) {
-  return NextDirectionManager();
+    StateNotifierProvider<NextDirectionManagerStateNotifier, SwipeDirection?>(
+        (ref) {
+  return NextDirectionManagerStateNotifier();
 });
