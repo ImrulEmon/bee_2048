@@ -12,6 +12,7 @@ const String youWin = 'You Win!';
 const String gameOver = 'Game Over !';
 
 const int winningScore = 2048;
+const int numberOfTiles = 16;
 
 const backgroundColor = Color(0xfffaf8ef);
 const textColor = Color(0xff776e65);

@@ -61,86 +61,76 @@ class _GamePageState extends ConsumerState<GamePage>
 
   @override
   Widget build(BuildContext context) {
-    return RawKeyboardListener(
-      autofocus: true,
-      focusNode: FocusNode(),
-      onKey: (RawKeyEvent event) {
-        // ****Read the third chapter if somethig goes woring****
-        //Move the tile with the arrows on the keyboard on Desktop
+    return SwipeDetector(
+      onSwipe: (direction, offset) {
+        //Move the tiles on Swipe on Android and iOS
+        if (ref.read(boardManagerProvider.notifier).move(direction)) {
+          _moveController.forward(from: 0.0);
+        }
       },
-      child: SwipeDetector(
-        onSwipe: (direction, offset) {
-          //Move the tiles on Swipe on Android and iOS
-          if (ref.read(boardManagerProvider.notifier).move(direction)) {
-            _moveController.forward(from: 0.0);
-          }
-        },
-        child: Scaffold(
-          backgroundColor: backgroundColor,
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: paddingDft),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // Game name
-                    const Text(
-                      '2048',
-                      style: TextStyle(
-                          color: textColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 52.0),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        // Score board
-                        const ScoreBoardWidget(),
-                        const SizedBox(height: paddingDft * 2),
-                        Row(
-                          children: [
-                            //Undo button
-                            ButtonWidget(
-                              icon: Icons.undo,
-                              onPressed: () {
-                                ref.read(boardManagerProvider.notifier).undo();
-                              },
-                            ),
-                            const SizedBox(width: paddingDft),
-                            //New Game button
-                            ButtonWidget(
-                              icon: Icons.refresh,
-                              onPressed: () {
-                                ref
-                                    .read(boardManagerProvider.notifier)
-                                    .newGame();
-                              },
-                            )
-                          ],
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(height: paddingDft * 2),
-              //TODO: Add the Empty Board Widget-have to put it in a Stack
-              Stack(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: paddingDft),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const EmptyBoardWidget(),
-                  //  TODO : add the tilr Board Widget
-                  TileBoardWidget(
-                    moveAnimation: _moveAnimation,
-                    scaleAnimation: _scaleAnimation,
+                  // Game name
+                  const Text(
+                    '2048',
+                    style: TextStyle(
+                        color: textColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 52.0),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      // Score board
+                      const ScoreBoardWidget(),
+                      const SizedBox(height: paddingDft * 2),
+                      Row(
+                        children: [
+                          //Undo button
+                          ButtonWidget(
+                            icon: Icons.undo,
+                            onPressed: () {
+                              ref.read(boardManagerProvider.notifier).undo();
+                            },
+                          ),
+                          const SizedBox(width: paddingDft),
+                          //New Game button
+                          ButtonWidget(
+                            icon: Icons.refresh,
+                            onPressed: () {
+                              ref.read(boardManagerProvider.notifier).newGame();
+                            },
+                          )
+                        ],
+                      )
+                    ],
                   )
                 ],
-              )
-            ],
-          ),
+              ),
+            ),
+            const SizedBox(height: paddingDft * 2),
+            //TODO: Add the Empty Board Widget-have to put it in a Stack
+            Stack(
+              children: [
+                const EmptyBoardWidget(),
+                //  TODO : add the tilr Board Widget
+                TileBoardWidget(
+                  moveAnimation: _moveAnimation,
+                  scaleAnimation: _scaleAnimation,
+                )
+              ],
+            )
+          ],
         ),
       ),
     );
@@ -148,6 +138,7 @@ class _GamePageState extends ConsumerState<GamePage>
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     // dispose animations
     _moveAnimation.dispose();
     _scaleAnimation.dispose();

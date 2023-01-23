@@ -8,11 +8,11 @@ import '../constants/constants_2048.dart';
 import '../providers/board_provider.dart';
 
 class TileBoardWidget extends ConsumerWidget {
-  const TileBoardWidget(
-      {super.key, required this.moveAnimation, required this.scaleAnimation});
-
   final CurvedAnimation moveAnimation;
   final CurvedAnimation scaleAnimation;
+
+  const TileBoardWidget(
+      {super.key, required this.moveAnimation, required this.scaleAnimation});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -64,29 +64,42 @@ class TileBoardWidget extends ConsumerWidget {
             );
           }),
 
-          // THIS shows after game over win or lose overly
+          // THIS shows after =*GameOver*= win or lose overly
+
           if (board.over)
             Positioned.fill(
-                child: Container(
-              color: overlayColor,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    board.won ? youWin : gameOver,
-                    style: const TextStyle(
-                        color: textColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 64.0),
-                  ),
-                  ButtonWidget(
-                      text: board.won ? newGame : tryAgain,
-                      onPressed: () {
-                        ref.read(boardManagerProvider.notifier).newGame();
-                      })
-                ],
+              child: Container(
+                color: overlayColor,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      board.score.toString(),
+                      style: const TextStyle(
+                          color: textColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 48.0),
+                    ),
+                    const SizedBox(height: paddingDft),
+                    Text(
+                      board.won ? youWin : gameOver,
+                      style: const TextStyle(
+                          color: textColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 48.0),
+                    ),
+                    const SizedBox(
+                      height: paddingDft * 2,
+                    ),
+                    ButtonWidget(
+                        text: board.won ? newGame : tryAgain,
+                        onPressed: () {
+                          ref.read(boardManagerProvider.notifier).newGame();
+                        })
+                  ],
+                ),
               ),
-            ))
+            )
         ],
       ),
     );

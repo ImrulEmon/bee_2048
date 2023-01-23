@@ -118,9 +118,11 @@ class BoardManagerStateNotifier extends StateNotifier<Board> {
     var i = 0;
     var rng = Random();
     do {
-      i = rng.nextInt(16);
+      i = rng.nextInt(numberOfTiles);
     } while (indexes.contains(i));
+
     return Tile(const Uuid().v4(), 2, i);
+    // Tile(id,value,index)
   }
 
   // Merge tiles
@@ -224,7 +226,8 @@ class BoardManagerStateNotifier extends StateNotifier<Board> {
       gameOver = false;
       for (var tile in state.tiles) {
         // if tile with 2048 then game is won
-        if (tile.value == 2048) {
+        // have to change here to play unlimited time
+        if (tile.value == winningScore) {
           gameWon = true;
         }
         // Set the tile merged :false
