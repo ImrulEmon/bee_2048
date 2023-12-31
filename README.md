@@ -1,16 +1,12 @@
 # bee_2048
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Archade type game
+<p align='left'>
+<img src="https://github.com/ImrulEmon/bee_2048/blob/main/2048/IMG-20231231-WA0001.jpg" width="30%" >
+<img src="https://github.com/ImrulEmon/bee_2048/blob/main/2048/IMG-20231231-WA0002.jpg" width="30%" >
+<img src="https://github.com/ImrulEmon/bee_2048/blob/main/2048/IMG-20231231-WA0003.jpg" width="30%" >
+<img src="https://github.com/ImrulEmon/bee_2048/blob/main/2048/IMG-20231231-WA0004.jpg" width="30%" >
+<img src="https://github.com/ImrulEmon/bee_2048/blob/main/2048/IMG-20231231-WA0005.jpg" width="30%" >
+<img src="https://github.com/ImrulEmon/bee_2048/blob/main/2048/IMG-20231231-WA0006.jpg" width="30%" >
+<img src="https://github.com/ImrulEmon/bee_2048/blob/main/2048/IMG-20231231-WA0007.jpg" width="30%" >
+<p>
